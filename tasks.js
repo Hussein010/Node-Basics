@@ -80,7 +80,12 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
-// Listing all the possible commands 
+/** 
+*Listing all the possible commands 
+*hello
+*exit
+*quit
+*/
 function help(){
   console.log('hello \nexit \nquit')
 }
