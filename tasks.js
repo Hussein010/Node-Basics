@@ -40,7 +40,9 @@ function onDataReceived(text) {
   }
   else if(text.match(/hello\w*/)){
     hello(text);
-    
+  }
+  else if(text === 'list\n'){
+    list(text)
   }
   else if(text === 'help\n'){
     help();
@@ -73,7 +75,13 @@ function hello(text){
 return console.log(text.trim() + "!");
 
 }
+let tasks = ["feed the cats", "clean the laundry"];
 
+function list() {
+  let batata = tasks.map(task => task+'\n');
+  let x = batata.toString().split(",").join("").trim();
+  return console.log(x);
+}
 
 /**
  * Exits the application
