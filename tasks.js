@@ -51,12 +51,10 @@ function onDataReceived(text) {
     let i=0;
       add(text);
   }
-  else if(text === 'remove\n'){
-      remove();
+  else if(text.match(/remove/)){
+      remove(text);
   }
-  else if(text === 'remove 1\n'){
-    remove1();
-  }
+
   else{
     unknownCommand(text);
   }
@@ -88,7 +86,7 @@ return console.log(text.trim() + "!");
 /**
  * tasks array
  */
-let tasks = ["feed the cats", "clean the laundry"];
+let tasks = ["feed the cats", "clean the laundry","clean the kitchen","clean the bathroom"];
 /**
  * print all the attributes is the array
  */
@@ -105,12 +103,17 @@ function add(text){
    tasks.push(x)
  
 }
-function remove(){
-  tasks.pop()
+function remove(text){
+  let number = text.match(/\d+/)-1;
+  if(text === "remove\n"){
+    tasks.pop();
+  }
+  else if(text.match(/^remove\s\d+/) && number <= tasks.length){
+    tasks.splice(number,1,"antoine debes");
+  }
+
 }
-function remove1(){
-  tasks.shift()
-}
+
    
 
 /**
