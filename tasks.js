@@ -12,6 +12,11 @@
 function startApp(name){
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
+  try{
+  load()
+  }catch{
+    console.log("can't load");
+  }
   process.stdin.on('data', onDataReceived);
   console.log(`Welcome to ${name}'s application!`)
   console.log("--------------------")
@@ -164,21 +169,39 @@ function modeling(text){
     tasks[number].check = "unchecked  "
   }
 }
+/**
+ * load fata
+ */
+ function load(){
+  const fs = require('fs');
+
+  let data = fs.readFileSync("database.json");
+  tasks = JSON.parse(data);
+}
+/** 
+*Listing all the possible commands 
+*/
+function help(){
+  console.log('hello \nexit \nquit \nremove \nremove 1 \nremove 2 \ncheck1 \n check2')
+}
 
 /**
  * Exits the application
  *
  * @returns {void}
  */
+/**
+ * save and exit
+ */
 function quit(){
-  console.log('Quitting now, goodbye!')
+  fs = require('fs');
+  fs.writeFileSync("database.json", JSON.stringify(list));
+  console.log('Quitting now, goodbye!');
   process.exit();
+
 }
 /** 
 *Listing all the possible commands 
-*hello
-*exit
-*quit
 */
 function help(){
   console.log('hello \nexit \nquit \nremove \nremove 1 \nremove 2 \ncheck1 \n check2')
