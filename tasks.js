@@ -109,7 +109,7 @@ function remove(text){
     tasks.pop();
   }
   else if(text.match(/^remove\s\d+/) && number <= tasks.length){
-    tasks.splice(number,1,"antoine debes");
+    tasks.splice(number,1);
   }
 
 }
@@ -132,7 +132,7 @@ function quit(){
 *quit
 */
 function help(){
-  console.log('hello \nexit \nquit')
+  console.log('hello \nexit \nquit \nremove \nremove 1 \nremove2')
 }
 
 // The following line starts the application
