@@ -57,7 +57,12 @@ function onDataReceived(text) {
   else if(text.match(/edit/)){
       edit(text);
 }
-
+  else if(text.match(/check/)){
+    modeling(text); 
+  }
+  else if(text.match(/unchcheck/)){
+    modeling(text);
+  }
 
   else{
     unknownCommand(text);
@@ -90,12 +95,12 @@ return console.log(text.trim() + "!");
 /**
  * tasks array
  */
-let tasks = ["feed the cats", "clean the laundry","clean the kitchen","clean the bathroom"];
+let tasks = [{check: "[]",value:"feed the cats"},{check: "[]", value:"clean the laundry"}, {check: "[]", value:"clean the kitchen"}];
 /**
  * print all the attributes is the array
  */
 function list() {
-  let batata = tasks.map(task => task+'\n');
+  let batata = tasks.map(task => (task.check+task.value+"\n"));
   let x = batata.toString().split(",").join("").trim();
   return console.log(x);
 }
@@ -142,8 +147,23 @@ function remove(text){
       tasks.splice(number,1,x);
     }
  }
-
+/**
+ * check and uncheck the tasks 
+ */
    
+function modeling(text){
+  let number = text.match(/\d+/)-1;
+
+  if(text === "check\n" || text === "uncheck\n"){
+    console.log('error');
+  }
+  else if(text.match(/^check\s\d+/) && number <= tasks.length){
+    tasks[number].check = "checked  ";
+  }
+  else if(text.match(/^uncheck\s\d+/) && number <= tasks.length){
+    tasks[number].check = "unchecked  "
+  }
+}
 
 /**
  * Exits the application
@@ -161,7 +181,7 @@ function quit(){
 *quit
 */
 function help(){
-  console.log('hello \nexit \nquit \nremove \nremove 1 \nremove 2')
+  console.log('hello \nexit \nquit \nremove \nremove 1 \nremove 2 \ncheck1 \n check2')
 }
 
 // The following line starts the application
