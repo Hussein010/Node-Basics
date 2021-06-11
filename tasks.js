@@ -51,6 +51,12 @@ function onDataReceived(text) {
     let i=0;
       add(text);
   }
+  else if(text === 'remove\n'){
+      remove();
+  }
+  else if(text === 'remove 1\n'){
+    remove1();
+  }
   else{
     unknownCommand(text);
   }
@@ -99,7 +105,12 @@ function add(text){
    tasks.push(x)
  
 }
-
+function remove(){
+  tasks.pop()
+}
+function remove1(){
+  tasks.shift()
+}
    
 
 /**
