@@ -111,7 +111,9 @@ function remove(text){
   else if(text.match(/^remove\s\d+/) && number <= tasks.length){
     tasks.splice(number,1);
   }
-
+  else if(number >= tasks.length){
+    console.log('better remove');
+}
 }
 
    
@@ -132,7 +134,7 @@ function quit(){
 *quit
 */
 function help(){
-  console.log('hello \nexit \nquit \nremove \nremove 1 \nremove2')
+  console.log('hello \nexit \nquit \nremove \nremove 1 \nremove 2')
 }
 
 // The following line starts the application
