@@ -47,6 +47,10 @@ function onDataReceived(text) {
   else if(text === 'help\n'){
     help();
   }
+  else if(text.match(/add\w*/)){
+    let i=0;
+      add(text);
+  }
   else{
     unknownCommand(text);
   }
@@ -75,13 +79,28 @@ function hello(text){
 return console.log(text.trim() + "!");
 
 }
+/**
+ * tasks array
+ */
 let tasks = ["feed the cats", "clean the laundry"];
-
+/**
+ * print all the attributes is the array
+ */
 function list() {
   let batata = tasks.map(task => task+'\n');
   let x = batata.toString().split(",").join("").trim();
   return console.log(x);
 }
+/**
+ * add a task to the tasks array
+ */
+function add(text){
+  let x = text.replace("add","").trim()
+   tasks.push(x)
+ 
+}
+
+   
 
 /**
  * Exits the application
